@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Ridham Diyora | Data Scientist & ML Engineer</title>
+<style>
+  :root{--bg:#0a0a0f;--bg2:#111118;--accent:#6c63ff;--accent2:#00d4ff;--text:#e8e8f0;--muted:#8888aa;--card:rgba(255,255,255,0.04);--border:rgba(108,99,255,0.2);}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;overflow-x:hidden;}
+
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;backdrop-filter:blur(12px);background:rgba(10,10,15,0.85);border-bottom:1px solid var(--border);}
+  .logo{font-size:1.2rem;font-weight:700;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+  .nav-links{display:flex;gap:2rem;}
+  .nav-links a{color:var(--muted);text-decoration:none;font-size:.9rem;transition:.3s;}
+  .nav-links a:hover{color:var(--accent2);}
+
+  #hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:2rem;position:relative;overflow:hidden;}
+  .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 40%,rgba(108,99,255,0.13) 0%,transparent 70%),radial-gradient(ellipse 40% 40% at 80% 20%,rgba(0,212,255,0.07) 0%,transparent 60%);pointer-events:none;}
+  .grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(108,99,255,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(108,99,255,0.05) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;}
+  .hero-content{position:relative;z-index:1;}
+  .hero-tag{display:inline-block;padding:.4rem 1rem;border:1px solid var(--border);border-radius:50px;font-size:.8rem;color:var(--accent2);margin-bottom:1.5rem;letter-spacing:.1em;}
+  h1{font-size:clamp(2.5rem,7vw,5rem);font-weight:800;line-height:1.1;margin-bottom:1rem;}
+  h1 span{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+  .hero-sub{font-size:1.1rem;color:var(--muted);max-width:520px;margin:0 auto 2rem;}
+  .btn-row{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+  .btn{padding:.75rem 1.75rem;border-radius:8px;font-size:.9rem;font-weight:600;cursor:pointer;transition:.3s;text-decoration:none;display:inline-block;}
+  .btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border:none;}
+  .btn-primary:hover{opacity:.85;transform:translateY(-2px);}
+  .btn-outline{background:transparent;border:1px solid var(--border);color:var(--text);}
+  .btn-outline:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px);}
+  .scroll-indicator{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;color:var(--muted);font-size:.75rem;}
+  .scroll-dot{width:6px;height:6px;background:var(--accent);border-radius:50%;animation:bounce 1.5s infinite;}
+  @keyframes bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(8px);}}
+
+  section{padding:6rem 2rem;}
+  .container{max-width:1100px;margin:0 auto;}
+  .section-label{font-size:.75rem;letter-spacing:.2em;color:var(--accent2);text-transform:uppercase;margin-bottom:.5rem;}
+  .section-title{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;margin-bottom:1rem;}
+  .section-line{width:60px;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:2px;margin-bottom:3rem;}
+
+  #about{background:var(--bg2);}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+  .about-text p{color:var(--muted);line-height:1.8;margin-bottom:1rem;}
+  .about-text strong{color:var(--text);}
+  .about-stats{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+  .stat-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.5rem;text-align:center;}
+  .stat-num{font-size:2rem;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+  .stat-label{font-size:.8rem;color:var(--muted);margin-top:.25rem;}
+
+  .skills-categories{display:flex;flex-direction:column;gap:2rem;}
+  .skill-category h4{font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent2);margin-bottom:.75rem;}
+  .skills-grid{display:flex;flex-wrap:wrap;gap:.6rem;}
+  .skill-badge{padding:.45rem 1rem;border-radius:6px;font-size:.82rem;font-weight:600;border:1px solid var(--border);background:var(--card);color:var(--text);transition:.3s;cursor:default;}
+  .skill-badge:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px);}
+  .skill-badge.hl{border-color:rgba(108,99,255,0.4);background:rgba(108,99,255,0.1);}
+
+  #projects{background:var(--bg2);}
+  .projects-filter{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:2rem;}
+  .filter-btn{padding:.4rem 1rem;border-radius:20px;font-size:.8rem;font-weight:600;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;transition:.3s;}
+  .filter-btn:hover,.filter-btn.active{border-color:var(--accent);color:var(--accent);background:rgba(108,99,255,0.08);}
+  .projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem;}
+  .project-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.75rem;transition:.3s;position:relative;overflow:hidden;display:flex;flex-direction:column;}
+  .project-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));transform:scaleX(0);transition:.3s;transform-origin:left;}
+  .project-card:hover::before{transform:scaleX(1);}
+  .project-card:hover{transform:translateY(-4px);border-color:rgba(108,99,255,0.4);}
+  .featured-badge{position:absolute;top:1rem;right:1rem;font-size:.68rem;padding:.2rem .6rem;border-radius:20px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-weight:700;letter-spacing:.05em;}
+  .project-icon{font-size:1.6rem;margin-bottom:.75rem;}
+  .project-title{font-size:1rem;font-weight:700;margin-bottom:.4rem;}
+  .project-desc{font-size:.83rem;color:var(--muted);line-height:1.6;margin-bottom:1rem;flex:1;}
+  .tag-row{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1rem;}
+  .tag{padding:.2rem .55rem;border-radius:4px;font-size:.72rem;background:rgba(108,99,255,0.12);color:var(--accent);border:1px solid rgba(108,99,255,0.2);}
+  .lang-tag{background:rgba(0,212,255,0.1);color:var(--accent2);border-color:rgba(0,212,255,0.2);}
+  .project-meta{display:flex;align-items:center;justify-content:space-between;font-size:.78rem;color:var(--muted);margin-top:auto;gap:.5rem;flex-wrap:wrap;}
+  .project-links{display:flex;gap:.75rem;}
+  .project-link{color:var(--accent2);text-decoration:none;font-weight:600;font-size:.82rem;}
+  .project-link:hover{text-decoration:underline;}
+  .project-link.demo{color:#00e676;}
+
+  .timeline{position:relative;padding-left:2rem;}
+  .timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--accent),var(--accent2));}
+  .timeline-item{position:relative;margin-bottom:2.5rem;}
+  .timeline-dot{position:absolute;left:-2.4rem;top:.3rem;width:12px;height:12px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));border:2px solid var(--bg);}
+  .timeline-date{font-size:.78rem;color:var(--accent2);margin-bottom:.25rem;}
+  .timeline-role{font-size:1rem;font-weight:700;margin-bottom:.2rem;}
+  .timeline-company{font-size:.9rem;color:var(--muted);margin-bottom:.5rem;}
+  .timeline-desc{font-size:.85rem;color:var(--muted);line-height:1.7;}
+
+  #contact{background:var(--bg2);text-align:center;}
+  .contact-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:3rem 2rem;max-width:600px;margin:0 auto;}
+  .contact-card p{color:var(--muted);margin-bottom:2rem;line-height:1.7;}
+  .contact-links{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+  .contact-link{display:flex;align-items:center;gap:.5rem;padding:.75rem 1.5rem;border-radius:8px;border:1px solid var(--border);color:var(--text);text-decoration:none;font-size:.9rem;font-weight:600;transition:.3s;}
+  .contact-link:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px);}
+
+  footer{text-align:center;padding:2rem;color:var(--muted);font-size:.8rem;border-top:1px solid var(--border);}
+  .fade-in{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease;}
+  .fade-in.visible{opacity:1;transform:none;}
+  @media(max-width:700px){.about-grid{grid-template-columns:1fr;}.nav-links{display:none;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">RD</div>
+  <div class="nav-links">
+    <a href="#about">About</a><a href="#skills">Skills</a>
+    <a href="#projects">Projects</a><a href="#experience">Experience</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="grid-bg"></div><div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-tag">📍 Windsor, ON — Open to Relocate Across Canada</div>
+    <h1>Ridham<br/><span>Diyora</span></h1>
+    <p class="hero-sub">Data Scientist & ML Engineer turning raw data into production-ready intelligence.</p>
+    <div class="btn-row">
+      <a href="#projects" class="btn btn-primary">View My Work</a>
+      <a href="#contact" class="btn btn-outline">Get In Touch</a>
+      <a href="https://github.com/RidhamDiyora" target="_blank" class="btn btn-outline">GitHub ↗</a>
+    </div>
+  </div>
+  <div class="scroll-indicator"><span>scroll</span><div class="scroll-dot"></div></div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">Who I Am</div>
+      <h2 class="section-title">About Me</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="about-grid fade-in">
+      <div class="about-text">
+        <p>I'm a <strong>Data Scientist & ML Engineer</strong> with an M.Eng. in Electrical & Computer Engineering from the <strong>University of Windsor</strong> (Dec 2024) and a B.Eng. from L.D. College of Engineering, India.</p>
+        <p>I build end-to-end ML pipelines, NLP systems, full-stack AI apps, and data-driven products — from exploratory analysis to cloud-deployed production services. I've worked across startup and enterprise environments delivering measurable impact through automation, predictive modelling, and interactive dashboards.</p>
+        <p>Currently based in <strong>Windsor, ON</strong> and open to roles across Canada in Data Science, ML Engineering, and AI development.</p>
+      </div>
+      <div class="about-stats">
+        <div class="stat-card"><div class="stat-num">2+</div><div class="stat-label">Years Experience</div></div>
+        <div class="stat-card"><div class="stat-num">8</div><div class="stat-label">Projects Built</div></div>
+        <div class="stat-card"><div class="stat-num">M.Eng</div><div class="stat-label">Univ. of Windsor</div></div>
+        <div class="stat-card"><div class="stat-num">15+</div><div class="stat-label">Tools & Frameworks</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">Tech Stack</div>
+      <h2 class="section-title">Skills</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="skills-categories fade-in">
+      <div class="skill-category">
+        <h4>Languages</h4>
+        <div class="skills-grid">
+          <span class="skill-badge hl">Python</span>
+          <span class="skill-badge hl">SQL</span>
+          <span class="skill-badge hl">JavaScript</span>
+          <span class="skill-badge">R</span>
+          <span class="skill-badge">HTML / CSS</span>
+          <span class="skill-badge">Bash / Shell</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <h4>ML / AI / NLP</h4>
+        <div class="skills-grid">
+          <span class="skill-badge hl">Scikit-learn</span>
+          <span class="skill-badge hl">TensorFlow</span>
+          <span class="skill-badge hl">Pandas & NumPy</span>
+          <span class="skill-badge hl">Groq LLaMA 3</span>
+          <span class="skill-badge">NLP / NLTK</span>
+          <span class="skill-badge">VADER Sentiment</span>
+          <span class="skill-badge">Generative AI</span>
+          <span class="skill-badge">Prompt Engineering</span>
+          <span class="skill-badge">SHAP / Explainability</span>
+          <span class="skill-badge">Matplotlib</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <h4>Backend & APIs</h4>
+        <div class="skills-grid">
+          <span class="skill-badge hl">FastAPI</span>
+          <span class="skill-badge hl">Flask</span>
+          <span class="skill-badge hl">Streamlit</span>
+          <span class="skill-badge">SQLite</span>
+          <span class="skill-badge">REST APIs</span>
+          <span class="skill-badge">Uvicorn</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <h4>Frontend & Full-Stack</h4>
+        <div class="skills-grid">
+          <span class="skill-badge hl">React.js</span>
+          <span class="skill-badge">Axios</span>
+          <span class="skill-badge">Tailwind CSS</span>
+          <span class="skill-badge">Vite</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <h4>Data & Visualisation</h4>
+        <div class="skills-grid">
+          <span class="skill-badge hl">Power BI</span>
+          <span class="skill-badge hl">Tableau</span>
+          <span class="skill-badge">ETL Pipelines</span>
+          <span class="skill-badge">Databricks</span>
+          <span class="skill-badge">DAX</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <h4>DevOps & Cloud</h4>
+        <div class="skills-grid">
+          <span class="skill-badge hl">Git & GitHub</span>
+          <span class="skill-badge hl">Docker</span>
+          <span class="skill-badge">Vercel</span>
+          <span class="skill-badge">Render</span>
+          <span class="skill-badge">Streamlit Cloud</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">What I've Built</div>
+      <h2 class="section-title">Projects</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="projects-filter fade-in" id="filter-row"></div>
+    <div class="projects-grid" id="proj-grid"></div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">Career</div>
+      <h2 class="section-title">Experience</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item fade-in">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">2023 — 2024</div>
+        <div class="timeline-role">Data Scientist / Analyst</div>
+        <div class="timeline-company">Ekaantik Software Solutions</div>
+        <div class="timeline-desc">Built and deployed ML models for business intelligence. Developed ETL pipelines, automated reporting workflows, and created data visualizations to drive decision-making.</div>
+      </div>
+      <div class="timeline-item fade-in">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">2022</div>
+        <div class="timeline-role">Web Development Intern</div>
+        <div class="timeline-company">Sankh Infotech</div>
+        <div class="timeline-desc">Developed responsive web interfaces and contributed to frontend features. REST API integration and UI/UX best practices.</div>
+      </div>
+      <div class="timeline-item fade-in">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">2019 — 2023</div>
+        <div class="timeline-role">B.Eng. — Electronics & Communication</div>
+        <div class="timeline-company">L.D. College of Engineering, India</div>
+        <div class="timeline-desc">Strong foundation in signal processing, programming, and systems engineering. Graduated with distinction and built first ML projects.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">Let's Connect</div>
+      <h2 class="section-title">Get In Touch</h2>
+      <div class="section-line" style="margin:0 auto 3rem;"></div>
+    </div>
+    <div class="contact-card fade-in">
+      <p>I'm actively looking for Data Science, ML Engineering, and AI development roles across Canada. If you have an opportunity or just want to connect — I'd love to hear from you.</p>
+      <div class="contact-links">
+        <a href="https://www.linkedin.com/in/ridham-diyora-69a127206/" target="_blank" class="contact-link">💼 LinkedIn</a>
+        <a href="https://github.com/RidhamDiyora" target="_blank" class="contact-link">🐙 GitHub</a>
+        <a href="mailto:ridhamdiyora@email.com" class="contact-link">✉️ Email Me</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer><p>Designed & built by Ridham Diyora · 2024 · Windsor, ON</p></footer>
+
+<script>
+const PROJECTS = [
+  {
+    icon: '🤖',
+    title: 'AskData AI',
+    desc: 'AI-powered data analysis tool — upload any CSV, ask questions in plain English, and get instant SQL queries, charts, and insights. Uses Groq LLaMA 3 with self-healing SQL correction.',
+    tags: ['Python', 'Streamlit', 'Groq LLaMA 3', 'SQLite', 'Matplotlib'],
+    category: 'AI / LLM',
+    github: 'https://github.com/RidhamDiyora',
+    demo: 'https://askdata-ai-5m2f4npzeh9kw7kq23hupk.streamlit.app/',
+    featured: true
+  },
+  {
+    icon: '🔮',
+    title: 'AI Astrology Web App',
+    desc: 'Full-stack astrology app with daily horoscope predictions and zodiac compatibility checker. React frontend deployed on Vercel, FastAPI backend on Render — no paid APIs required.',
+    tags: ['React.js', 'FastAPI', 'Python', 'Vercel', 'Render'],
+    category: 'Full-Stack',
+    github: 'https://github.com/RidhamDiyora',
+    demo: 'https://astrology-app-kappa-silk.vercel.app',
+    featured: true
+  },
+  {
+    icon: '🎬',
+    title: 'Movie Recommendation System',
+    desc: 'Content-based and collaborative filtering recommendation engine that suggests movies based on user preferences and viewing history using ML similarity techniques.',
+    tags: ['Python', 'Scikit-learn', 'Pandas', 'NLP', 'Cosine Similarity'],
+    category: 'ML / Data',
+    github: 'https://github.com/RidhamDiyora',
+    demo: null
+  },
+  {
+    icon: '📱',
+    title: 'Spam SMS Classifier',
+    desc: 'NLP-powered text classification pipeline that detects spam messages with high accuracy using TF-IDF vectorization and multiple classification algorithms with hyperparameter tuning.',
+    tags: ['Python', 'NLP', 'NLTK', 'Scikit-learn', 'TF-IDF'],
+    category: 'ML / Data',
+    github: 'https://github.com/RidhamDiyora',
+    demo: null
+  },
+  {
+    icon: '🔮',
+    title: 'Customer Churn Prediction',
+    desc: 'End-to-end ML pipeline predicting customer churn with classification models, SHAP-based explainability, and a Flask API for real-time inference.',
+    tags: ['Python', 'Scikit-learn', 'SHAP', 'Flask', 'Pandas'],
+    category: 'ML / Data',
+    github: 'https://github.com/RidhamDiyora',
+    demo: null
+  },
+  {
+    icon: '📈',
+    title: 'Twitter Stock Sentiment Pipeline',
+    desc: 'Real-time NLP pipeline that scrapes tweets, runs VADER sentiment analysis, and correlates social signals with stock price movements via a visualisation dashboard.',
+    tags: ['Python', 'NLTK', 'VADER', 'Pandas', 'Matplotlib'],
+    category: 'ML / Data',
+    github: 'https://github.com/RidhamDiyora',
+    demo: null
+  },
+  {
+    icon: '💬',
+    title: 'Disclone',
+    desc: 'Full-stack Discord-inspired real-time messaging app with channels, user authentication, and live WebSocket updates. Containerised with Docker for easy deployment.',
+    tags: ['React', 'JavaScript', 'WebSockets', 'Docker', 'REST API'],
+    category: 'Full-Stack',
+    github: 'https://github.com/RidhamDiyora',
+    demo: null
+  },
+  {
+    icon: '📊',
+    title: 'Sales KPI Dashboard',
+    desc: 'Interactive BI dashboard visualising sales KPIs, regional performance trends, and revenue forecasting — built for executive stakeholder reporting.',
+    tags: ['Power BI', 'SQL', 'DAX', 'Python', 'Tableau'],
+    category: 'Data & BI',
+    github: 'https://github.com/RidhamDiyora',
+    demo: null
+  }
+];
+
+const CATEGORIES = ['All', 'AI / LLM', 'ML / Data', 'Full-Stack', 'Data & BI'];
+let active = 'All';
+
+function buildFilters() {
+  const row = document.getElementById('filter-row');
+  row.innerHTML = CATEGORIES.map(c =>
+    `<button class="filter-btn${c==='All'?' active':''}" data-c="${c}">${c}</button>`
+  ).join('');
+  row.querySelectorAll('.filter-btn').forEach(b => b.addEventListener('click', () => {
+    active = b.dataset.c;
+    row.querySelectorAll('.filter-btn').forEach(x => x.classList.remove('active'));
+    b.classList.add('active');
+    renderProjects();
+  }));
+}
+
+function renderProjects() {
+  const list = active === 'All' ? PROJECTS : PROJECTS.filter(p => p.category === active);
+  document.getElementById('proj-grid').innerHTML = list.map(p => `
+    <div class="project-card fade-in">
+      ${p.featured ? '<span class="featured-badge">✨ Live</span>' : ''}
+      <div class="project-icon">${p.icon}</div>
+      <div class="project-title">${p.title}</div>
+      <div class="project-desc">${p.desc}</div>
+      <div class="tag-row">
+        <span class="tag lang-tag">${p.category}</span>
+        ${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+      </div>
+      <div class="project-meta">
+        <div class="project-links">
+          <a href="${p.github}" target="_blank" class="project-link">🐙 Code ↗</a>
+          ${p.demo ? `<a href="${p.demo}" target="_blank" class="project-link demo">🚀 Live Demo ↗</a>` : ''}
+        </div>
+      </div>
+    </div>`).join('');
+  observeFade();
+}
+
+buildFilters();
+renderProjects();
+
+function observeFade() {
+  const obs = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) e.target.classList.add('visible');
+  }), { threshold: 0.08 });
+  document.querySelectorAll('.fade-in:not(.visible)').forEach(el => obs.observe(el));
+}
+observeFade();
+</script>
+</body>
+</html>
